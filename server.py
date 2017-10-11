@@ -16,7 +16,8 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
 
     def do_POST(self):
-        subdirectory = datetime.now().date().strftime("%d")+"_s"
+        subdirectory = datetime.now().strftime("%d_%H")+"_s"
+
         try:
             os.mkdir(subdirectory)
         except Exception:
