@@ -71,5 +71,5 @@ class MyServer(BaseHTTPRequestHandler):
     #     # suffix += 1
     #     self.send_response(200)
 
-sever = HTTPServer(('', 8081), MyServer)
+sever = HTTPServer(('', 80), MyServer)
 sever.serve_forever()
