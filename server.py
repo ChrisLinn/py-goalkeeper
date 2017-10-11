@@ -1,8 +1,10 @@
 from os import curdir
 from os.path import join as pjoin
+import os
 import time
 import json
 import urlparse
+from datetime import datetime
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
@@ -28,6 +30,11 @@ class MyServer(BaseHTTPRequestHandler):
 
 
     def do_POST(self):
+        subdirectory = datetime.now().date().strftime("%d")+"_s"
+        try:
+            os.mkdir(subdirectory)
+        except Exception:
+            pass
 
         length = int(self.headers['Content-Length'])
         # print length
@@ -36,7 +43,9 @@ class MyServer(BaseHTTPRequestHandler):
         # print post_data
         data = json.loads(post_data)
         # print data['domain']
-        with open((("-").join(data['filename'].split('/')))[2:], 'w') as f:
+        fname = (("-").join(data['filename'].split('/')))[2:]
+
+        with open(os.path.join(subdirectory,fname), 'w') as f:
             f.write(data['filecontent'])
 
         # print "Sum of values in json is:", sum(data.values())
