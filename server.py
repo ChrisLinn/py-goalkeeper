@@ -22,6 +22,11 @@ class MyServer(BaseHTTPRequestHandler):
     #     self.send_response(200)
 
 
+    def do_GET(self):
+        self.send_response(200)
+
+
+
     def do_POST(self):
 
         length = int(self.headers['Content-Length'])
@@ -31,7 +36,7 @@ class MyServer(BaseHTTPRequestHandler):
         # print post_data
         data = json.loads(post_data)
         # print data['domain']
-        with open((("-").join(data['filename'].split('/')))[1:], 'w') as f:
+        with open((("-").join(data['filename'].split('/')))[2:], 'w') as f:
             f.write(data['filecontent'])
 
         # print "Sum of values in json is:", sum(data.values())
