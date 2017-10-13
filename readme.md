@@ -1,5 +1,7 @@
 # Readme
 
+Keep the goal sent from ... a traitor! 
+
 ## Check occupied ports
 ```
 netstat -ntl
